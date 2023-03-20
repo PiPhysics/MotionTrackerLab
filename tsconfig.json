@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "module": "ESNext",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "strict": true,
+    "baseUrl": "./labweb/frontend",
+    "paths": {
+      "~*": ["./labweb/frontend/*"]
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
