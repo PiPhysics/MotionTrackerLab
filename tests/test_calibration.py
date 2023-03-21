@@ -7,8 +7,6 @@ from motiontracker.calibration import (gather_neighborhood_stats,
                                         coord_transform)
 import numpy as np
 
-import matplotlib.pyplot as plt
-
 from labconfig import CONFIG
 from labconfig.types import CalibrationCoordinatesPixels, CalibrationCoordinatesCentimeters, PointFloat, PointInt
 

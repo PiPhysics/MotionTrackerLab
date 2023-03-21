@@ -4,9 +4,6 @@ from motiontracker.utility.cv_util import findContours
 from scipy.spatial import distance
 from labconfig.types import CalibrationCoordinatesPixels, CalibrationCoordinatesCentimeters, PointInt, PointFloat, ROI
 
-import matplotlib.pyplot as plt
-
-
 def gather_values_around_seed(
     image: np.ndarray, seed_pos: Tuple[int, int], k_size: int = 3
 ):

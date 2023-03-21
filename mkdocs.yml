@@ -1,0 +1,84 @@
+site_name: "motiontrackerlab"
+site_description: "Automatic Motion Tracking and Recording"
+site_url: "https://PiPhysics.github.io/MotionTrackerLab"
+repo_url: "https://github.com/PiPhysics/MotionTrackerLab"
+edit_uri: "blob/master/docs/"
+repo_name: "PiPhysics/MotionTrackerLab"
+watch: [README.md, CONTRIBUTING.md, CHANGELOG.md, labconfig/, motiontracker/, labweb/]
+
+nav:
+- Home:
+  - Overview: index.md
+  - Changelog: changelog.md
+  - Credits: credits.md
+  - License: license.md
+# defer to gen-files + literate-nav
+- Development:
+  - Contributing: contributing.md
+- Author's website: jeremybyu.github.io/
+
+theme:
+  name: material
+  logo: logo.svg
+  features:
+  - content.code.annotate
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.top
+  palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: teal
+    accent: purple
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: black
+    accent: lime
+    toggle:
+      icon: material/weather-night
+      name: Switch to light mode
+
+extra_css:
+- css/style.css
+- css/material.css
+- css/mkdocstrings.css
+
+markdown_extensions:
+- admonition
+- callouts
+- pymdownx.details
+- pymdownx.emoji
+- pymdownx.magiclink
+- pymdownx.snippets:
+    check_paths: true
+- pymdownx.superfences
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.tasklist
+- toc:
+    permalink: "¤"
+
+plugins:
+- search
+- markdown-exec
+- gen-files:
+    scripts:
+    - docs/gen_ref_nav.py
+    - docs/gen_redirects.py
+- literate-nav:
+    nav_file: SUMMARY.txt
+- coverage
+- section-index
+- mkdocstrings:
+    handlers:
+      python:
+        options:
+          docstring_style: google
+          docstring_options:
+            ignore_init_summary: yes
+          merge_init_into_class: yes
+          show_submodules: no
+
