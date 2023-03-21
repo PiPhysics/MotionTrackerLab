@@ -74,11 +74,6 @@ def get_stream(freq: int = 30) -> StreamingResponse:
 ################################################################################
 
 
-@api_app.get("/test")
-async def test():
-    log.info("Testing api")
-    return dict(message="This is a test")
-
 @api_app.post("/command/receive_calibration_points")
 async def receive_calibration_points(calibration_points: CalibrationCoordinatesPixels):
     success = True
