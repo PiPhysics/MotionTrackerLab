@@ -2,7 +2,7 @@
   "name": "motion-tracker",
   "version": "0.0.1",
   "scripts": {
-    "start": "parcel serve labweb/frontend/index.html --dist-dir labweb/frontend/dist --public-url /static -p 1234 --hmr-port 1235",
+    "start": "parcel serve labweb/frontend/index.html --dist-dir labweb/frontend/dist --public-url /static",
     "build": "parcel build --dist-dir labweb/frontend/dist --public-url /static labweb/frontend/index.html",
     "clean": "rm -rf .parcel-cache labweb/frontend/dist"
   },
