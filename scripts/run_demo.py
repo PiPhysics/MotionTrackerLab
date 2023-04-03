@@ -16,12 +16,14 @@ machine = MotionTrackerController(CONFIG)
 
 def main():
     print("Command             -> key")
+
     print("quit                -> q")
     print("start/stop camera   -> s")
     print("calibrate/reset     -> c")
     print("tracking/reset      -> t")
     print("The next commands are only available for a dummy camera")
     print("next camera state -> n")
+    print("Jump cal/track      -> 1")
     # log.info("Enter 'q' to quit. Enter 's' to start camera. Enter 'c' to close camera.")
 
     def click_event(event, x, y, flags, params):
@@ -91,7 +93,7 @@ def main():
                 machine.camera._cycle_state()
             elif key == ord('1'):
                 log.info("Fast Forwarding to Tracking State! This is for debug purposes only")
-                machine.camera._cycle_state()
+                machine.cycle_camera()
                 time.sleep(0.1)
                 machine.start_calibration()
                 time.sleep(0.1)
@@ -99,8 +101,8 @@ def main():
                 time.sleep(0.1)
                 machine.receive_object_points(start=default_track_point)
                 time.sleep(0.1)
-                machine.camera._cycle_state()
-                machine.camera._cycle_state()
+                machine.cycle_camera()
+                machine.cycle_camera()
                 
         except Exception as e:
             log.exception("Something went wrong!")
@@ -108,9 +110,9 @@ def main():
 
     machine.soft_reset()
     cv2.destroyAllWindows()
-    graph = DotGraphMachine(MotionTrackerController)  # also accepts instances
-    dot = graph()
-    dot.write_png("assets/MotionTrackerController.png")
+    # graph = DotGraphMachine(MotionTrackerController)  # also accepts instances
+    # dot = graph()
+    # dot.write_png("assets/MotionTrackerController.png")
 
 
 if __name__ == "__main__":

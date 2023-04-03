@@ -126,7 +126,11 @@ class BaseCamera(object):
         log.info('Starting camera thread...')
         try:
             frames_iterator = cls.frames()
+            t_prev = time.perf_counter()
             for frame in frames_iterator:
+                t_now = time.perf_counter()
+                dt = (t_now-t_prev) * 1000
+                log.debug(f"Frame Rate: {dt:.0f}")
                 BaseCamera.frame = frame
                 BaseCamera.event.set()  # send signal to clients
                 time.sleep(0)
@@ -137,6 +141,7 @@ class BaseCamera(object):
                     frames_iterator.close()
                     log.info('Stopping camera thread due to inactivity.')
                     break
+                t_prev = t_now
         except Exception as e:
             log.error("Error in Camera thread! Closing thread, try starting again later")
             log.exception(e)

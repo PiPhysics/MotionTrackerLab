@@ -76,6 +76,7 @@ class SimpleServerCommand(str, Enum):
     start_recording = "start_recording"  # no arguments
     stop_recording = "stop_recording"  # no arguments
     soft_reset = "soft_reset"  # no arguments
+    cycle_camera = "cycle_camera"  # no arguments
 
 
 class CalibrationCoordinatesPixels(BaseModel):
