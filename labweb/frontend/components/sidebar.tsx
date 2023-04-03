@@ -13,9 +13,16 @@ function Sidebar(){
         <NavLink className="mx-auto cursor-pointer" to="/"><div className='text-4xl font-semibold font-logofont mt-10 text-white'>Motion Tracker</div></NavLink> 
         <div className='flex w-full items-center justify-center flex-auto text-white gap-5'>
             <ul className='w-full flex flex-col space-y-10 text-center items-end justify-center'>
+
                 {Sidebardata.map((val) => {
                     return (
-                        <NavLink to={val.link} className='p-2 font-regular font-primaryfont hover:bg-secondary hover:border-l-8 hover:border-white active:bg-secondary active:border-l-8 active:border-white w-4/5'>
+                        <NavLink to={val.link}
+                        className={({isActive}) => {
+                            return (
+                                "p-2 font-regular font-primaryfont w-4/5 " +
+                                (isActive ? "bg-secondary border-l-8 border-white" : "")
+                            )
+                        }}>
                         <li className='flex'>
                      {val.icon} 
                     <span className='flex-[70%] text-xl flex items-center justify-start '>{val.title} </span>
@@ -23,6 +30,7 @@ function Sidebar(){
                 </NavLink>
                     )
                 })}
+                
             </ul>
         </div>
         <div className='flex items-center cursor-pointer justify-center bg-secondary w-3/5 rounded-md text-white mx-auto mb-10'>

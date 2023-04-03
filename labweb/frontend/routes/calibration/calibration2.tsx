@@ -46,11 +46,11 @@ export default function Calibration2() {
       <div className="flex flex-col space-y-4 w-full justify-center items-center">
 
         <div className='flex w-2/3 text-primary justify-between'>
-          <NavLink to="/calibration2"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
+          <NavLink to="/calibration1"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
           <div className='flex space-x-4 justify-center items-center'>
-            <MinusCircleIcon className='w-[20px] h-[20px]'/>
-            <MinusCircleIcon className='w-[20px] h-[20px]'/>
-            <MinusCircleIcon className='w-[20px] h-[20px]'/>
+            <MinusCircleIcon className='w-[28px] h-[28px]'/>
+            <MinusCircleIcon className='w-[28px] h-[28px]'/>
+            <MinusCircleIcon className='w-[28px] h-[28px]'/>
           </div>
 
         </div>
@@ -66,10 +66,10 @@ export default function Calibration2() {
           <div className='grid grid-cols-3 gap-x-6 gap-y-3'>
             {Markers.map((val) => {
                     return (
-            <div className='flex group cursor-pointer p-2 h-8 w-48 rounded-md text-center justify-center items-center border-2 border-red-700 bg-red-100  hover:border-green-700 hover:bg-green-100 '>
+            <div className='flex group cursor-pointer p-2 h-8 w-48 rounded-md text-center justify-center items-center border-2 border-red-600 bg-red-100  hover:border-green-600 hover:bg-green-100 '>
               <div className='text-red-600 group-hover:text-green-600 basis-3/5'>{val.title}</div>
-              <div className='text-gray-800 basis-1/5 border-l-2 border-red-700 group-hover:border-green-700'>{val.x}</div>
-              <div className='text-gray-800 basis-1/5 border-l-2 border-red-700 group-hover:border-green-700'>{val.y}</div>
+              <div className='text-gray-800 basis-1/5 border-l-2 border-red-600 group-hover:border-green-600'>{val.x}</div>
+              <div className='text-gray-800 basis-1/5 border-l-2 border-red-600 group-hover:border-green-600'>{val.y}</div>
             </div>
                     )})}
           </div>
