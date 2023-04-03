@@ -23,6 +23,7 @@ def main():
     print("tracking/reset      -> t")
     print("The next commands are only available for a dummy camera")
     print("next camera state -> n")
+    print("cycle frame or state -> m")
     print("Jump cal/track      -> 1")
     # log.info("Enter 'q' to quit. Enter 's' to start camera. Enter 'c' to close camera.")
 
@@ -47,6 +48,7 @@ def main():
     # {"tl": {"x": 235, "y": 69}, "tm": {"x": 482, "y": 68}, "tr": {"x": 734, "y": 69}, "bl": {"x": 232, "y": 221}, "bm": {"x": 478, "y": 216}, "br": {"x": 732, "y": 219}}
     default_calib_points = CalibrationCoordinatesPixels(tl=PointInt(x=235, y=69), tm=PointInt(x=482, y=68), tr=PointInt(x=734, y=69), bl=PointInt(x=232, y=221), bm=PointInt(x=478, y=216), br=PointInt(x=732, y=219))
     default_track_point = PointInt(x=331, y=273)
+    cycle_state = True
     while True:
         try:
             log.debug("Getting Camera Frame")
@@ -87,10 +89,19 @@ def main():
                 else:
                     machine.start_recording()
             elif key == ord("n"):
+                if cycle_state:
+                    machine.camera._cycle_state()
+                else:
+                    machine.camera._cycle_frame()
                 log.info(
-                    "Cycling state of camera. This only available for the CameraVideo used for testing"
+                    f"Cycling {'state' if cycle_state else 'frame'} of camera. This only available in CameraVideo used for testing"
                 )
-                machine.camera._cycle_state()
+            elif key == ord("m"):
+                cycle_state = not cycle_state
+                log.info(
+                    f"Changing so that key 'n' will cycle {'state' if cycle_state else 'frame'}"
+                )
+                
             elif key == ord('1'):
                 log.info("Fast Forwarding to Tracking State! This is for debug purposes only")
                 machine.cycle_camera()

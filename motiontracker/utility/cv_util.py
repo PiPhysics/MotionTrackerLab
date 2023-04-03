@@ -1,6 +1,39 @@
 import numpy as np
 import cv2
 
+
+def vconcat_resize(img_list, interpolation 
+                   = cv2.INTER_CUBIC):
+    # take minimum width
+    w_min = min(img.shape[1] 
+                for img in img_list)
+      
+    # resizing images
+    im_list_resize = [cv2.resize(img,
+                      (w_min, int(img.shape[0] * w_min / img.shape[1])),
+                                 interpolation = interpolation)
+                      for img in img_list]
+    # return final image
+    return cv2.vconcat(im_list_resize)
+
+
+def hconcat_resize(img_list, 
+                   interpolation 
+                   = cv2.INTER_CUBIC):
+    # take minimum heights
+    h_min = min(img.shape[0] 
+                for img in img_list)
+      
+    # image resizing 
+    im_list_resize = [cv2.resize(img,
+                       (int(img.shape[1] * h_min / img.shape[0]),
+                        h_min), interpolation
+                                 = interpolation) 
+                      for img in img_list]
+      
+    # return final image
+    return cv2.hconcat(im_list_resize)
+
 def findContours(imgPre, roi = [0,0,640,360], min_area=1000, sort=True, filter=0, img=None, c=(255, 0, 0)):
     """
     Finds Contours in an image

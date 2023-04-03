@@ -1,6 +1,7 @@
 
 all:
-    debug: False
+    log_debug: False
+    video_debug: True
 labweb:
     production: false # this should be false during development. It will create proxy server for fronted server to the backend server
     log_directory: "logs" 
@@ -39,7 +40,8 @@ motion_tracker:
         roi:
             width: 150 # region of interest width
             height: 125 # region of interest height
-        std_multiplier: [1, 5, 5]
+        rg_std_multiplier: [3, 3, 3] # region growing standard deviation multiplier. Increase allow larger region growing. Region growing returns a mask of pixels that are similar.
+        th_std_multiplier: [4, 5, 10] # HSV thresholding standard deviation multiplier. Take the hsv mean and std of pixels from region growing. Now we create a threshold with these multipliers.
     recording:
         default_experiment_name: "default"
         save_directory: "./data"

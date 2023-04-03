@@ -11,7 +11,17 @@ from labconfig import CONFIG
 from labconfig.types import ROIConfig, ObjectState, PointInt, PointFloat, ROI
 from .camera.base_camera import BaseCamera, FrameEvent
 from .calibration import region_growing, get_hsl_lo_hi, get_object_position
+from .utility.cv_util import hconcat_resize, vconcat_resize
 
+
+def debug_image(full_bgr, debug=False, crop_bgr=None, crop_mask=None):
+    if not debug:
+        return full_bgr
+    crop_mask_ = cv2.cvtColor(crop_mask, cv2.COLOR_GRAY2BGR)
+    debug_small = vconcat_resize([crop_bgr, crop_mask_])
+    debug_big = hconcat_resize([full_bgr, debug_small])
+    return debug_big
+    
 
 class Tracker(object):
     thread: threading.Thread = None  # background thread that reads tracks frames
@@ -105,9 +115,11 @@ class Tracker(object):
             timeout=CONFIG["motion_tracker"]["tracking"]["frame_timeout"]
         )
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        # create extract the
+        # extract the lower and upper bounds
         hsv_lo, hsv_hi = get_hsl_lo_hi(
-            hsv, px, py
+            hsv, px, py, 
+            th_std_multiplier=CONFIG["motion_tracker"]["tracking"]["th_std_multiplier"],
+            rg_std_multiplier=CONFIG["motion_tracker"]["tracking"]["rg_std_multiplier"]
         )  # this finds the lower and upper bounds to track an object at (px,py)
         log.info(f"Tracking: HSL Low: {hsv_lo}, HSL High: {hsv_hi}")
 
@@ -139,11 +151,11 @@ class Tracker(object):
                         Tracker.dlt
                     )
                     Tracker.current_object_state.timestamp = t_now * 1000
-                    Tracker.track_frame = bgr_image
+                    Tracker.track_frame = debug_image(bgr_image, CONFIG['all']['video_debug'], roi_frame, mask)
                     Tracker.event.set()
                 else:
                     log.error("Unable to find object in frame. Skipping to next frame.")
-                    Tracker.track_frame = frame
+                    Tracker.track_frame = debug_image(frame, CONFIG['all']['video_debug'], roi_frame, mask)
                     Tracker.event.set()
                     continue
                 ############################################################################

@@ -21,7 +21,7 @@ def load_config(fpath=DEFAULT_FILE) -> Config:
         data:Config = yaml.load(fh, Loader=yaml.FullLoader)
 
     data["top_level_directory"] = TOP_LEVEL_DIR
-    data["all"]["log_level"] = logging.DEBUG if data["all"]["debug"] else logging.INFO
+    data["all"]["log_level"] = logging.DEBUG if data["all"]["log_debug"] else logging.INFO
 
     data["motion_tracker"]["calibration_stickers"]["coordinates_local"] = CalibrationCoordinatesCentimeters(**data["motion_tracker"]["calibration_stickers"]["coordinates_local"])
     return data
