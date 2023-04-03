@@ -30,7 +30,6 @@ function Sidebar(){
                 </NavLink>
                     )
                 })}
-                
             </ul>
         </div>
         <div className='flex items-center cursor-pointer justify-center bg-secondary w-3/5 rounded-md text-white mx-auto mb-10'>

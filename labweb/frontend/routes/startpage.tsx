@@ -5,7 +5,7 @@ function StartPage() {
     <div className="text-2xl text-center">Start Page
     <br>
     </br>
-    Explain about the project in brief at conference
+    Explain about the project in brief at conference!!!!!
     </div>
   )
 }
