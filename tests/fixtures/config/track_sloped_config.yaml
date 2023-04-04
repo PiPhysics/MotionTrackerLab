@@ -1,0 +1,52 @@
+
+all:
+    log_debug: False
+    video_debug: True
+labweb:
+    production: false # this should be false during development. It will create proxy server for fronted server to the backend server
+    log_directory: "logs" 
+    static_files_directory: "labweb/frontend/dist"
+motion_tracker:
+    camera: # settings for camera control
+        video_fpath: "./tests/fixtures/tracking_sloped_loop.mp4"
+        states: 
+            calibrate: [0, 250]
+            track: [250, 500]
+            tracking: [500, 8_000]
+    inactive_timer: 300 # turn camera off and reset motion tracker if no one is looking at camera (get_frames) for x seconds
+    calibration_stickers:
+        min_area: 75
+        coordinates_local:
+            tl: 
+                x: 0
+                y: 40
+            tm: 
+                x: 45
+                y: 40
+            tr:
+                x: 90
+                y: 40
+            bl:
+                x: 0
+                y: 20
+            bm:
+                x: 45
+                y: 20
+            br:
+                x: 90
+                y: 20
+    tracking:
+        frame_timeout: 1 # tracking should shutdown if no frames are received after x seconds
+        roi:
+            width: 250 # region of interest width
+            height: 150 # region of interest height
+        rg_std_multiplier: [3, 3, 3] # region growing standard deviation multiplier. Increase allow larger region growing. Region growing returns a mask of pixels that are similar.
+        th_std_multiplier: [4, 5, 10] # HSV thresholding standard deviation multiplier. Take the hsv mean and std of pixels from region growing. Now we create a threshold with these multipliers.
+    recording:
+        default_experiment_name: "default"
+        save_directory: "./data"
+                
+    
+                
+    
+
