@@ -66,6 +66,8 @@ def findContours(imgPre, roi = [0,0,640,360], min_area=1000, sort=True, filter=0
             # print(len(approx))
             if len(approx) == filter or filter == 0:
                 x, y, w, h = cv2.boundingRect(approx)
+                if w > 100:
+                    continue
                 cx, cy = x + (w // 2), y + (h // 2)
                 conFound.append({"cnt": cnt, "area": area, "bbox": [x+x_roi, y+y_roi, w, h], "center": [cx+x_roi, cy+y_roi]})
                 if drawCon:
