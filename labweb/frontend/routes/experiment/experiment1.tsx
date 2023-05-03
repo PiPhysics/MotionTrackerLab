@@ -11,15 +11,15 @@ import {
     MinusCircleIcon,
   } from '@heroicons/react/24/outline'
 
-export default function Calibration3() {
+export default function Experiment1() {
     return (
         <div className="flex flex-col space-y-4 w-full justify-center items-center">
 
         <div className='flex w-2/3 text-primary justify-between'>
-          <NavLink to="/calibration2"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
+          <NavLink to="/calibration3"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
           <div className='flex space-x-4 justify-center items-center '>
             <CheckCircleIcon className=' w-[28px] h-[28px]' />
-            <MinusCircleIcon className='w-[28px] h-[28px]'/>
+            <CheckCircleIcon className='w-[28px] h-[28px]'/>
             <MinusCircleIcon className='w-[28px] h-[28px]'/>
           </div>
 
@@ -31,24 +31,22 @@ export default function Calibration3() {
         </div>
 
         <div className="w-2/3 flex space-y-4 flex-col drop-shadow-md justify-center items-center h-[200px] bg-[#DFE7EE] rounded-md">
-          <h1 className='font-primaryfont font-medium text-xl'> Select the Target</h1>
-          <p className='font-primaryfont text-center px-2 font-regular text-sm'>Click the buttons below and select the corresponding marker on the camera view one at a time</p>
+          <h1 className='font-primaryfont font-medium laptop:text-2xl text-xl'> Name the experiment</h1>
+          <p className=' text-center font-primaryfont font-regular laptop:text-base text-sm'>For each time you want to track a motion of an object, you will be required to name the experiment</p>
 
             
-            <div className='flex group cursor-pointer p-2 h-8 w-48 rounded-md text-center justify-center items-center border-2 border-red-600 bg-red-200  hover:border-green-600 hover:bg-green-200 '>
-                <div className='text-red-600 group-hover:text-green-600 basis-3/5'>Track Object</div>
-                <div className='text-gray-800 basis-1/5 border-l-2 border-red-600 group-hover:border-green-600'>X</div>
-                <div className='text-gray-800 basis-1/5 border-l-2 border-red-600 group-hover:border-green-600'>Y</div>
-            </div>
+          
+                <input className='' type="text"></input>
+          
         
           
           
 
         </div>
 
-        <NavLink to="/experiment1" >
+        <NavLink to="/experiment2" >
             <div className='flex cursor-pointer items-center justify-center bg-primary hover:bg-secondary w-[300px] rounded-md text-white mx-auto'>
-                <button onClick={receive_object_points} className="text-xl p-2 font-regular font-primaryfont">Track Object</button>
+                <button onClick={receive_object_points} className="text-xl p-2 font-regular font-primaryfont">Save</button>
             </div>
         </NavLink>
 

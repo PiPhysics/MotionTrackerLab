@@ -11,9 +11,8 @@ module.exports = {
           'primaryfont': ['Inter', 'sans-serif'],
         },
         screens: {
-          'mobile': '320px',
           'tablet': '768px',
-          'laptop': '1024px',
+          'laptop': '1300px',
           'desktop': '1440px'
         },
       },

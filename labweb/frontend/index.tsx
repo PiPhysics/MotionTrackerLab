@@ -7,14 +7,14 @@ import {
 
 import Root from "./routes/root";
 import Output from "./routes/output"
-import Experiment from "./routes/experiment"
-import Debug from "./routes/debug"
+import Experiment1 from "./routes/experiment/experiment1";
+import Experiment2 from "./routes/experiment/experiment2";
+import Debug from "./routes/debug";
 import ErrorPage from "./routes/error-page";
 import Calibration1 from './routes/calibration/calibration1';
 import Calibration2 from './routes/calibration/calibration2';
 import Calibration3 from './routes/calibration/calibration3';
 import StartPage from './routes/startpage';
-
 
 // Creating the router for our SPA
 const router = createBrowserRouter([
@@ -40,8 +40,12 @@ const router = createBrowserRouter([
         element: <Calibration3 />,
       },
       {
-        path: "/experiment", // Default route
-        element: <Experiment />,
+        path: "/experiment1", // Default route
+        element: <Experiment1 />,
+      },
+      {
+        path: "/experiment2", // Default route
+        element: <Experiment2 />,
       },
       {
         path: "/output", // Default route

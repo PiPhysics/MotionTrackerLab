@@ -4,28 +4,41 @@ import {
     ArrowPathIcon,
   } from '@heroicons/react/24/outline'
 import {NavLink} from "react-router-dom";
+import { matchPath } from 'react-router';
 
 import { Sidebardata } from './sidebar-data'
 
 function Sidebar(){
+
+    // let result = window.location.href;
+    // let isActiveNav = false;
+
+    // if(result.includes("experiment2")){
+    //     isActiveNav = true;
+    // }
+
+
+
+
+
   return (
-    <div className='min-h-full flex justify-center basis-1/5 flex-col bg-primary'>
-        <NavLink className="mx-auto cursor-pointer" to="/"><div className='text-4xl font-semibold font-logofont mt-10 text-white'>Motion Tracker</div></NavLink> 
+    <div className='min-h-full flex justify-center basis-[25%] flex-col bg-primary'>
+        <NavLink className="mx-auto cursor-pointer" to="/"><div className='laptop:text-4xl text-2xl font-semibold font-logofont mt-10 text-white'>Motion Tracker</div></NavLink> 
         <div className='flex w-full items-center justify-center flex-auto text-white gap-5'>
             <ul className='w-full flex flex-col space-y-10 text-center items-end justify-center'>
 
                 {Sidebardata.map((val) => {
                     return (
-                        <NavLink to={val.link}
+                        <NavLink to={val.link} key={val.title}
                         className={({isActive}) => {
                             return (
-                                "p-2 font-regular font-primaryfont w-4/5 " +
-                                (isActive ? "bg-secondary border-l-8 border-white" : "")
+                                "laptop:p-2 p-1 font-regular font-primaryfont w-4/5 " +
+                                (isActive? "bg-secondary border-l-4 laptop:border-l-8 border-white" : "")
                             )
                         }}>
                         <li className='flex'>
                      {val.icon} 
-                    <span className='flex-[70%] text-xl flex items-center justify-start '>{val.title} </span>
+                    <span className='flex-[70%] text-base laptop:text-xl flex items-center justify-start '>{val.title} </span>
                 </li>
                 </NavLink>
                     )
@@ -34,7 +47,7 @@ function Sidebar(){
         </div>
         <div className='flex items-center cursor-pointer justify-center bg-secondary w-3/5 rounded-md text-white mx-auto mb-10'>
             <ArrowPathIcon className='w-[25px] h-[35px]'/>
-            <div className="text-xl p-2 flex font-regular font-primaryfont">Soft Reset</div>
+            <div className="text-sm p-2 flex font-regular laptop:text-xl font-primaryfont">Soft Reset</div>
         </div>
     </div>
 
