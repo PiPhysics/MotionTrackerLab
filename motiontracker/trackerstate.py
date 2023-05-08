@@ -175,8 +175,11 @@ class MotionTrackerController(StateMachine):
             event (_type_): _description_
             state (_type_): _description_
         """
-        log.info(f"Entering tracking state with start coordinates: {start}")
-        self.tracker.start_tracking(start.x, start.y, self.dlt)
+        if start is not None:
+            log.info(f"Entering tracking state with start coordinates: {start}")
+            self.tracker.start_tracking(start.x, start.y, self.dlt)
+        else:
+            log.info(f"Entering tracking state from experiment. Keeping same tracked object")
 
     def on_reset_tracking(self, event, state):
         log.info("Reset tracking has been issued, turning off tracking.")
@@ -250,8 +253,15 @@ class MotionTrackerController(StateMachine):
 
     def callback_tracking_thread_closed(self):
         log.info("Inside State Machine: tracking thread was closed")
-        if self.current_state is not self.startup:
+        if self.current_state.id in self.tracking_on_states:
             log.error("Tracking must have crashed! ")
             self.reset_tracking()
+
+    def cycle_camera(self):
+        if isinstance(self.camera, CameraVideo):
+            log.info("Cycling camera state. Debug purposes only")
+            self.camera._cycle_state()
+        else:
+            log.warning("Unable to cycle a camera from a live video")
 
 

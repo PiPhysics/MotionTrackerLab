@@ -50,6 +50,7 @@ Open the url: `http://127.0.0.1:8000`
 
 **Demo**
 
+0. `export LAB_CONFIG_FILE=tests/fixtures/config/simple_config.yaml` - Optional, To load demo video file
 1. `python -m scripts.run_demo`
 
 

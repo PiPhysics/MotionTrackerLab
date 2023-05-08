@@ -8,10 +8,11 @@ labweb:
     static_files_directory: "labweb/frontend/dist"
 motion_tracker:
     camera: # settings for camera control
-        width: 640
-        height: 360
-        fps: 60
-        device_index: 0
+        video_fpath: "./tests/fixtures/simple_tracking.mp4"
+        states: 
+            calibrate: [0, 1000]
+            track: [0, 1000]
+            tracking: [1000, 3000]
     inactive_timer: 300 # turn camera off and reset motion tracker if no one is looking at camera (get_frames) for x seconds
     calibration_stickers:
         min_area: 75
@@ -38,12 +39,14 @@ motion_tracker:
         frame_timeout: 1 # tracking should shutdown if no frames are received after x seconds
         roi:
             width: 150 # region of interest width
-            height: 100 # region of interest height
-        rg_std_multiplier: [1, 1, 1] # region growing standard deviation multiplier. Increase allow larger region growing. Region growing returns a mask of pixels that are similar.
-        th_std_multiplier: [3, 3, 10] # HSV thresholding standard deviation multiplier. Take the hsv mean and std of pixels from region growing. Now we create a threshold with these multipliers.
+            height: 125 # region of interest height
+        rg_std_multiplier: [3, 3, 3] # region growing standard deviation multiplier. Increase allow larger region growing. Region growing returns a mask of pixels that are similar.
+        th_std_multiplier: [4, 5, 10] # HSV thresholding standard deviation multiplier. Take the hsv mean and std of pixels from region growing. Now we create a threshold with these multipliers.
     recording:
         default_experiment_name: "default"
         save_directory: "./data"
+                
+    
                 
     
 

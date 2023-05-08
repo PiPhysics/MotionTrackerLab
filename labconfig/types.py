@@ -76,6 +76,7 @@ class SimpleServerCommand(str, Enum):
     start_recording = "start_recording"  # no arguments
     stop_recording = "stop_recording"  # no arguments
     soft_reset = "soft_reset"  # no arguments
+    cycle_camera = "cycle_camera"  # no arguments
 
 
 class CalibrationCoordinatesPixels(BaseModel):
@@ -275,6 +276,8 @@ class ROIConfig(TypedDict):
 class TrackingConfig(TypedDict):
     frame_timeout: int
     roi: ROIConfig
+    rg_std_multiplier: List
+    th_std_multiplier: List
 
 
 class RecordingConfig(TypedDict):
@@ -293,7 +296,7 @@ class MotionTrackerConfig(TypedDict):
 class AllConfig(TypedDict):
     log_debug: bool  # whether to log debug statements
     log_level: Optional[int]  # log level, calculated automatically based upon log_debug
-
+    video_debug: bool
 
 class Config(TypedDict):
     all: AllConfig

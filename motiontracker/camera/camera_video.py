@@ -12,6 +12,8 @@ class Camera(BaseCamera):
     states:Optional[Dict[str, Tuple[int, int]]] = None
     current_state:str = None
     state_change_flag = False
+    cycle_individual_frames = False
+    next_frame = False
 
     def __init__(self, video_fpath=None, states=None, callback_thread_closed=None ):
         if os.environ.get('OPENCV_CAMERA_SOURCE'):
@@ -32,8 +34,14 @@ class Camera(BaseCamera):
         Camera.state_change_flag = True
 
     @staticmethod
+    def _cycle_frame():
+        Camera.cycle_individual_frames = True
+        Camera.next_frame = True
+
+    @staticmethod
     def _cycle_state():
         "This is hardcoded here just for testing"
+        Camera.cycle_individual_frames = False
         if Camera.current_state == None:
             Camera.set_state("calibrate")
         elif Camera.current_state == "calibrate":
@@ -71,6 +79,15 @@ class Camera(BaseCamera):
                 current_frame = camera.get(cv2.CAP_PROP_POS_FRAMES)
                 log.debug(f"start_ms: {start_ms}, end_ms: {end_ms}, start_frame: {start_frame}, end_frame: {end_frame}, current_frame: {current_frame}, ")
 
+                # if the user has requested to go frame by frame
+                if Camera.cycle_individual_frames:
+                    # if the user did NOT activate the next frame, then return the last_img
+                    if not Camera.next_frame:
+                        yield last_img
+                        continue
+                    else:
+                        Camera.next_frame = False
+                
                 if Camera.state_change_flag:
                     Camera.state_change_flag = False
                     start_ms, end_ms = Camera.states[Camera.current_state]

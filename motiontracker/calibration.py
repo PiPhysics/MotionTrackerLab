@@ -5,7 +5,7 @@ from scipy.spatial import distance
 from labconfig.types import CalibrationCoordinatesPixels, CalibrationCoordinatesCentimeters, PointInt, PointFloat, ROI
 
 def gather_values_around_seed(
-    image: np.ndarray, seed_pos: Tuple[int, int], k_size: int = 3
+    image: np.ndarray, seed_pos: Tuple[int, int], k_size:int=11
 ):
 
     row, col = seed_pos
@@ -24,9 +24,9 @@ def gather_values_around_seed(
 
 
 def gather_neighborhood_stats(
-    image: np.ndarray, seed_pos: Tuple[int, int], k_size: int = 3
+    image: np.ndarray, seed_pos: Tuple[int, int], k_size:int=11
 ):
-    window = gather_values_around_seed(image, seed_pos)
+    window = gather_values_around_seed(image, seed_pos, k_size)
     mean = window.mean(axis=(0, 1))
     std = window.std(axis=(0, 1))
     return (mean, std)
@@ -46,24 +46,26 @@ def error_hsv(c1, c2):
     # todo, handle rollover
     return np.linalg.norm(c1-c2)
 
-def get_hsl_lo_hi(hsv:np.ndarray, px:int, py:int, **kwargs):
+def get_hsl_lo_hi(hsv:np.ndarray,  px:int, py:int, th_std_multiplier=[4, 4, 4], **kwargs):
     """ Get the lo and hi hsl values that should threshold the pixel at (py,px)"""
     binary_image = np.zeros(shape=(hsv.shape[0], hsv.shape[1]), dtype=np.uint8)
     binary_image = region_growing(hsv, (py, px), binary_image, **kwargs)
+    # import cv2
+    # cv2.imwrite("blah.png", binary_image)
     binary_image = binary_image.astype(bool)
     mean = hsv[binary_image, :].mean(axis=0)
     std = hsv[binary_image, :].std(axis=0)
-    hsv_lo = np.clip(mean - 3 * std, a_min=[0, 0, 0], a_max=[180, 255, 255]).astype(int)
-    hsv_hi = np.clip(mean + 3 * std, a_min=[0, 0, 0], a_max=[180, 255, 255]).astype(int)
+    hsv_lo = np.clip(mean - th_std_multiplier * std, a_min=[0, 0, 0], a_max=[180, 255, 255]).astype(int)
+    hsv_hi = np.clip(mean + th_std_multiplier * std, a_min=[0, 0, 0], a_max=[180, 255, 255]).astype(int)
     return hsv_lo, hsv_hi
 
 def region_growing(
     image: np.ndarray,
     seed_pos: Tuple[int, int],
     binary_image: np.ndarray,
-    std_multiplier:float = 3.0,
+    min_std: Tuple[int, int, int] = (2, 5, 5),
+    rg_std_multiplier:Tuple[int, int, int] = [3, 3, 3],
     max_neighbor_distance: int = 20,
-    min_std: Tuple[int, int, int] = (1, 5, 5),
 ):
     # gather samples around 3X3 kernel
     mean, std = gather_neighborhood_stats(image, seed_pos)
@@ -78,7 +80,7 @@ def region_growing(
         # get absolute hue error
         error_hue = abs(mean[0] - value[0]) 
         error_sat = abs(mean[1] - value[1]) 
-        if error_hue < (std[0] * std_multiplier) and error_sat < (std[1] * std_multiplier):
+        if error_hue < (std[0] * rg_std_multiplier[0]) and error_sat < (std[1] * rg_std_multiplier[1]):
             # hue and saturation error is less than some multiplier of std, add to list
             binary_image[candidate[0], candidate[1]] = 255
             neighbors = get_neighbors(candidate, img_shape=image.shape[:2])
