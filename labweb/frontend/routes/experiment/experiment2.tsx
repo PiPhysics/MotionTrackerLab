@@ -3,6 +3,8 @@ import {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { receive_object_points } from '../../api';
 import Video from '../../components/Video'; 
+import { start_recording, stop_recording } from '../../api';
+
 import {
     ArrowLeftCircleIcon,
     CheckCircleIcon
@@ -17,14 +19,16 @@ export default function Experiment2() {
   const [count, setCount] = useState(0);
   const [startClicked, setStartClicked] = useState(false);
 
-  const handleStartClick = () => {
+  const handleStartClick = async () => {
     setStartClicked(true);
+    await start_recording();
   };
 
-  const handleStopClick = () => {
+  const handleStopClick = async () => {
     if (startClicked) {
       setCount(count + 1);
       setStartClicked(false);
+      await stop_recording();
     }
   };
 
@@ -35,10 +39,10 @@ export default function Experiment2() {
 
         <div className='flex w-2/3 text-primary justify-between'>
           <NavLink to="/experiment1"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
-          <div className='flex space-x-4 justify-center items-center '>
+          <div className='flex space-x-2 justify-center items-center '>
             <CheckCircleIcon className=' w-[28px] h-[28px]' />
-            <MinusCircleIcon className='w-[28px] h-[28px]'/>
-            <MinusCircleIcon className='w-[28px] h-[28px]'/>
+            <CheckCircleIcon className='w-[28px] h-[28px]'/>
+            <CheckCircleIcon className='w-[28px] h-[28px]'/>
           </div>
 
         </div>
@@ -55,11 +59,9 @@ export default function Experiment2() {
             
             <div className='flex flex-col laptop:flex-row justify-center text-white gap-4 laptop:gap-12 items-center'>
               <button onClick={handleStartClick} className='rounded-full w-[120px]  laptop:w-[200px] py-2 px-6 text-xl laptop:text-2xl bg-green-600 z-20 hover:drop-shadow-xl'> Start</button>
-              <button onClick={handleStopClick} className='rounded-full w-[120px] laptop:w-[200px] py-2 px-6 text-xl laptop:text-2xl bg-red-600 z-20 hover:drop-shadow-xl'> Stop</button>
+              <button onClick={handleStopClick} disabled={!startClicked} className='rounded-full w-[120px] laptop:w-[200px] py-2 px-6 text-xl laptop:text-2xl bg-red-600 z-20 hover:drop-shadow-xl'> Stop</button>
             </div>
         
-          
-          
 
         </div>
 

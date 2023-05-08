@@ -11,13 +11,24 @@ import {
     MinusCircleIcon,
   } from '@heroicons/react/24/outline'
 
+  import {open_experiment} from "../../api"
+
 export default function Experiment1() {
+
+  const sendName = async () => {
+    const inputElement = document.getElementById("experiment");
+    const experimentName = inputElement.value;
+    await open_experiment(experimentName);
+  }
+
+
+
     return (
         <div className="flex flex-col space-y-4 w-full justify-center items-center">
 
         <div className='flex w-2/3 text-primary justify-between'>
           <NavLink to="/calibration3"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
-          <div className='flex space-x-4 justify-center items-center '>
+          <div className='flex space-x-2 justify-center items-center '>
             <CheckCircleIcon className=' w-[28px] h-[28px]' />
             <CheckCircleIcon className='w-[28px] h-[28px]'/>
             <MinusCircleIcon className='w-[28px] h-[28px]'/>
@@ -36,17 +47,16 @@ export default function Experiment1() {
 
             
           
-                <input className='' type="text"></input>
+          <input className="shadow text-center appearance-none border rounded w-2/3 laptop:w-[40%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autoComplete='off' id="experiment" type="text" placeholder="Experiment Name"></input>
           
         
-          
           
 
         </div>
 
         <NavLink to="/experiment2" >
             <div className='flex cursor-pointer items-center justify-center bg-primary hover:bg-secondary w-[300px] rounded-md text-white mx-auto'>
-                <button onClick={receive_object_points} className="text-xl p-2 font-regular font-primaryfont">Save</button>
+                <button onClick={sendName} className="text-xl p-2 font-regular font-primaryfont">Save</button>
             </div>
         </NavLink>
 

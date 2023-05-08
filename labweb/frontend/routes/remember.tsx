@@ -19,7 +19,7 @@
     //     console.log(point)
     // })
 
-    || (buttonTexts[buttonId] && buttonId !== selectedButton)
+    // || (buttonTexts[buttonId] && buttonId !== selectedButton)
 
     // const [buttonTexts, setButtonTexts] = useState<{ [id: string]: string }>({});
 
@@ -87,3 +87,18 @@
           
           
         </div> */
+
+
+
+        // Calibration 3 
+
+        // <div className="w-2/3 flex space-y-4 flex-col drop-shadow-md justify-center items-center h-[200px] bg-[#DFE7EE] rounded-md">
+        //   <h1 className='font-primaryfont font-medium text-xl'> Select the Target</h1>
+        //   <p className='font-primaryfont text-center px-2 font-regular text-sm'>Click the buttons below and select the corresponding marker on the camera view one at a time</p>
+
+            
+        //   <div id={key} onClick={() => handleButtonClick(key)} className={`flex group box-border cursor-pointer w-52 rounded-md text-center justify-center items-center border-2  hover:border-green-600 hover:bg-green-100 ${getButtonClass(key)}`}> 
+        //       <div className=' group-hover:text-green-600 p-1 basis-[66%]'>{value.title}</div>
+        //       <div className='text-gray-800 basis-[19%] p-1  bg-white border-l-2 border-gray-600 group-hover:border-green-600'>{value.x}</div>
+        //       <div className='text-gray-800 basis-[19%] p-1  bg-white border-l-2 border-gray-600 group-hover:border-green-600'>{value.y}</div>
+        //   </div> 

@@ -2,7 +2,7 @@
 import React from 'react';  
 import Video from '../../components/Video'; 
 import { NavLink } from 'react-router-dom';
-import {start_calibration, receive_calibration_points} from "../../api"
+import {start_calibration} from "../../api"
 
 export default function Calibration1() {
     return (
