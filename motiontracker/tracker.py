@@ -104,15 +104,15 @@ class Tracker(object):
         frame = Tracker.camera.get_frame(
             timeout=CONFIG["motion_tracker"]["tracking"]["frame_timeout"]
         )
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        # create extract the
-        hsv_lo, hsv_hi = get_hsl_lo_hi(
-            hsv, px, py
-        )  # this finds the lower and upper bounds to track an object at (px,py)
-        log.info(f"Tracking: HSL Low: {hsv_lo}, HSL High: {hsv_hi}")
-
-        t_prev = time.perf_counter()
         try:
+            hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+            # create extract the
+            hsv_lo, hsv_hi = get_hsl_lo_hi(
+                hsv, px, py
+            )  # this finds the lower and upper bounds to track an object at (px,py)
+            log.info(f"Tracking: HSL Low: {hsv_lo}, HSL High: {hsv_hi}")
+            t_prev = time.perf_counter()
+
             while not Tracker.stop_tracking_flag:
                 # read from camera in for loop, with timeout
                 log.debug("Waiting for frame in tracking thread...")
