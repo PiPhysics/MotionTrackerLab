@@ -28,31 +28,31 @@ const router = createBrowserRouter([
         element: <StartPage />,
       },
       {
-        path: "/calibration1", // Default route
+        path: "/calibration1", 
         element: <Calibration1 />,
       },
       {
-        path: "/calibration2", // Default route
+        path: "/calibration2", 
         element: <Calibration2 />,
       },
       {
-        path: "/calibration3", // Default route
+        path: "/calibration3", 
         element: <Calibration3 />,
       },
       {
-        path: "/experiment1", // Default route
+        path: "/experiment1", 
         element: <Experiment1 />,
       },
       {
-        path: "/experiment2", // Default route
+        path: "/experiment2", 
         element: <Experiment2 />,
       },
       {
-        path: "/output", // Default route
+        path: "/output", 
         element: <Output />,
       },
       {
-        path: "/debug", // Default route
+        path: "/debug", 
         element: <Debug />,
       },
     ],
