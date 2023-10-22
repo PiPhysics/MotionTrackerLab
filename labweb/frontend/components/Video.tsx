@@ -4,14 +4,15 @@ import eventBus from "../eventBus"
 function imageOnClick(e: any) { 
   var ratioX = e.target.naturalWidth / e.target.offsetWidth;
   var ratioY = e.target.naturalHeight / e.target.offsetHeight;
-  var domX = e.pageX + window.pageXOffset - e.target.offsetLeft;
-  var domY = e.pageY + window.pageYOffset - e.target.offsetTop;
+  var domX = e.pageX + window.scrollX - e.target.offsetLeft;
+  var domY = e.pageY + window.scrollY - e.target.offsetTop;
   var imgX = Math.floor(domX * ratioX);
   var imgY = Math.floor(domY * ratioY);
 
   // console.log(imgX, imgY);
-  eventBus.dispatch("cameraFeedClickEvent", { x:imgX, y:imgY});
+  
 };
+
 
 
 const Video = () => {
