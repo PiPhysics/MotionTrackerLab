@@ -46,6 +46,10 @@ Open two terminals
 
 Open the url: `http://127.0.0.1:8000`
 
+API Docs: `http://127.0.0.1:8000/api/docs#/`
+
+Add this if you want to work with video files *before* you run `uvicorn labweb:app`: `export LAB_CONFIG_FILE=tests/fixtures/config/simple_config.yaml`. This will not use a different configuration file that loads video files.  You can change the state of the video file with the api command `/command/cycle_camera`.
+
 ### Scripts
 
 **Demo**
