@@ -1,7 +1,7 @@
 import React from 'react';
 import {DataRow, TableProps} from '../types';
 
-
+// Table component for displaying data in output page
 const Table: React.FC<TableProps> = ({ data }) => {
   // Calculate velocity for each row
   const rowsWithVelocity = data.map((row, i) => {
@@ -16,8 +16,8 @@ const Table: React.FC<TableProps> = ({ data }) => {
 
   // Render table
   return (
-    <table className="table-auto rounded-lg">
-      <thead className='bg-primary text-white font-primaryfont'>
+    <table className="rounded-lg table-auto">
+      <thead className='text-white bg-primary font-primaryfont'>
         <tr>
           <th className="px-4 py-2">Local Position X</th>
           <th className="px-4 py-2">Local Position Y</th>
@@ -27,9 +27,9 @@ const Table: React.FC<TableProps> = ({ data }) => {
       <tbody>
         {rowsWithVelocity.map((row) => (
           <tr key={`${row.x}-${row.y}`}>
-            <td className="border px-4 py-2">{row.x.toFixed(2)}</td>
-            <td className="border px-4 py-2">{row.y.toFixed(2)}</td>
-            <td className="border px-4 py-2">{row.velocity.toFixed(2)}</td>
+            <td className="px-4 py-2 border">{row.x.toFixed(2)}</td>
+            <td className="px-4 py-2 border">{row.y.toFixed(2)}</td>
+            <td className="px-4 py-2 border">{row.velocity.toFixed(2)}</td>
           </tr>
         ))}
 

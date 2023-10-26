@@ -1,4 +1,4 @@
-// Calibration Marker
+// Code to remember (personal use only)
 
 
 //const Markers: CalibrationCoordinatesPixels = {
@@ -70,16 +70,16 @@
 
 /* 
         <div className="w-2/3 flex space-y-2 flex-col drop-shadow-md justify-center items-center h-[200px] bg-[#DFE7EE] rounded-md">
-          <h1 className='font-primaryfont font-medium text-xl'> Select the Markers</h1>
-          <p className='font-primaryfont font-regular text-sm'> Click the buttons below and select the corresponding marker on the camera view one at a time</p>
+          <h1 className='text-xl font-medium font-primaryfont'> Select the Markers</h1>
+          <p className='text-sm font-primaryfont font-regular'> Click the buttons below and select the corresponding marker on the camera view one at a time</p>
 
           <div className='grid grid-cols-3 gap-x-6 gap-y-3'>
             {Object.entries(Markers).map(([key, value]) => {
                     return (
-                  <div key={key} className='flex group cursor-pointer p-2 h-8 w-48 rounded-md text-center justify-center items-center border-2 border-red-600 bg-red-100  hover:border-green-600 hover:bg-green-100 '>
+                  <div key={key} className='flex items-center justify-center w-48 h-8 p-2 text-center bg-red-100 border-2 border-red-600 rounded-md cursor-pointer group hover:border-green-600 hover:bg-green-100 '>
                     <div className='text-red-600 group-hover:text-green-600 basis-3/5'>{value.title}</div>
-                    <div className='text-gray-800 basis-1/5 border-l-2 border-red-600 group-hover:border-green-600'>{value.x}</div>
-                    <div className='text-gray-800 basis-1/5 border-l-2 border-red-600 group-hover:border-green-600'>{value.y}</div>
+                    <div className='text-gray-800 border-l-2 border-red-600 basis-1/5 group-hover:border-green-600'>{value.x}</div>
+                    <div className='text-gray-800 border-l-2 border-red-600 basis-1/5 group-hover:border-green-600'>{value.y}</div>
                   </div> 
                     )})}
           </div>
@@ -93,8 +93,8 @@
         // Calibration 3 
 
         // <div className="w-2/3 flex space-y-4 flex-col drop-shadow-md justify-center items-center h-[200px] bg-[#DFE7EE] rounded-md">
-        //   <h1 className='font-primaryfont font-medium text-xl'> Select the Target</h1>
-        //   <p className='font-primaryfont text-center px-2 font-regular text-sm'>Click the buttons below and select the corresponding marker on the camera view one at a time</p>
+        //   <h1 className='text-xl font-medium font-primaryfont'> Select the Target</h1>
+        //   <p className='px-2 text-sm text-center font-primaryfont font-regular'>Click the buttons below and select the corresponding marker on the camera view one at a time</p>
 
             
         //   <div id={key} onClick={() => handleButtonClick(key)} className={`flex group box-border cursor-pointer w-52 rounded-md text-center justify-center items-center border-2  hover:border-green-600 hover:bg-green-100 ${getButtonClass(key)}`}> 

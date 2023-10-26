@@ -3,8 +3,8 @@ import Papa from 'papaparse';
 import Table from '../../components/table';
 import {DataRow, TableProps} from '../../types';
 
+// below code is for parsing the csv file and displaying it in a table: still working on it!
 export default function Output() {
-
 
     const [data, setData] = useState<DataRow[]>([]);
 

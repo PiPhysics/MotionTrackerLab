@@ -10,16 +10,16 @@ import { soft_reset } from '../api';
 
 import { Sidebardata } from './sidebar-data'
 
+// Component for the sidebar
 function Sidebar(){
-
 
   return (
     <div className='min-h-full flex justify-center basis-[25%] flex-col bg-primary'>
         <NavLink className="mx-auto cursor-pointer" to="/">
-            <div className='laptop:text-4xl text-2xl font-semibold font-logofont mt-10 text-white'>Motion Tracker</div>
+            <div className='mt-10 text-2xl font-semibold text-white laptop:text-4xl font-logofont'>Motion Tracker</div>
         </NavLink> 
-        <div className='flex w-full items-center justify-center flex-auto text-white gap-5'>
-            <ul className='w-full flex flex-col space-y-10 text-center items-end justify-center'>
+        <div className='flex items-center justify-center flex-auto w-full gap-5 text-white'>
+            <ul className='flex flex-col items-end justify-center w-full space-y-10 text-center'>
 
                 {Sidebardata.map((val) => {
                     return (
@@ -40,9 +40,9 @@ function Sidebar(){
             </ul>
         </div>
 
-        <div className='flex items-center cursor-pointer justify-center bg-secondary w-3/5 rounded-md text-white mx-auto mb-10'>
+        <div className='flex items-center justify-center w-3/5 mx-auto mb-10 text-white rounded-md cursor-pointer bg-secondary'>
             <ArrowPathIcon className='w-[25px] h-[35px]'/>
-            <div onclick={soft_reset} className="text-sm p-2 flex font-regular laptop:text-xl font-primaryfont">Soft Reset</div>
+            <div onclick={soft_reset} className="flex p-2 text-sm font-regular laptop:text-xl font-primaryfont">Soft Reset</div>
         </div>
         
     </div>

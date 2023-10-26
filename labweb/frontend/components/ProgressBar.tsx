@@ -11,13 +11,13 @@ import {
 
 
 
-const ProgressBar = (props: string) => {
+const ProgressBar = (props: any) => {
   return (
-    <div className='flex w-2/3 text-primary justify-between'>
+    <div className='flex justify-between w-2/3 text-primary'>
       <NavLink to={props}>
         <ArrowLeftCircleIcon className='w-[50px] h-[50px]' />
       </NavLink>
-      <div className='flex space-x-2 justify-center items-center'>
+      <div className='flex items-center justify-center space-x-2'>
         <MinusCircleIcon className=' w-[28px] h-[28px]' />
         <MinusCircleIcon className='w-[28px] h-[28px]' />
         <MinusCircleIcon className='w-[28px] h-[28px]' />
