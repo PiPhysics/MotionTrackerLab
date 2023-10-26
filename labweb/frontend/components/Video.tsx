@@ -1,4 +1,8 @@
 import React from 'react'
+import { useCoordinateStore, useImageClick } from '../store';
+
+const setClicked = useImageClick((state) => state.setClicked);
+
 
 // below is the code for capturing the coordinates of the image as user clicks on it. 
 export function imageOnClick(e: any) { 
@@ -9,6 +13,10 @@ export function imageOnClick(e: any) {
   var imgX = Math.floor(domX * ratioX);
   var imgY = Math.floor(domY * ratioY);
 
+  // useCoordinateStore.setState({ setCoordinates: [imgX, imgY] });
+  useCoordinateStore.getState().setCoordinates(imgX, imgY); 
+
+  setClicked(true);
   console.log(imgX, imgY);
 };
 

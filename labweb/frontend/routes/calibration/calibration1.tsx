@@ -21,9 +21,6 @@ export default function Calibration1() {
             </div>
           </NavLink>
           
-
-
-
         </div>
     )
 }

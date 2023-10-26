@@ -1,7 +1,7 @@
 // import eventBus from "../eventBus"
 import React, { useState, useRef } from 'react';
 
-
+// needs changes
 const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
 
     const [selectedButton, setSelectedButton] = useState<string | null>(null);
@@ -47,11 +47,11 @@ const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
   return (
         <div className="w-2/3 p-4 flex space-y-2 flex-col drop-shadow-md justify-center items-center bg-[#DFE7EE] rounded-md">
           <canvas className="bg-white w-[200px]" ref={canvasRef} onClick={handleCanvasClick} />
-          <h1 className='font-primaryfont font-medium text-xl'> Select the Target</h1>
-          <p className='font-primaryfont font-regular text-sm'> Click the buttons below and select the corresponding marker on the camera view one at a time</p>
+          <h1 className='text-xl font-medium font-primaryfont'> Select the Target</h1>
+          <p className='text-sm font-primaryfont font-regular'> Click the buttons below and select the corresponding marker on the camera view one at a time</p>
 
 
-          <div className='grid  gap-x-6 gap-y-3'>
+          <div className='grid gap-x-6 gap-y-3'>
             {Object.entries(TrackerPoint).map(([key, value]) => {
                     return (
                   <div key={key} id={key} onClick={() => handleButtonClick(key)} className={`flex group box-border cursor-pointer w-52 rounded-md text-center justify-center items-center border-2  hover:border-green-600 hover:bg-green-100 ${getButtonClass(key)}`}> 

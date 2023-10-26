@@ -10,7 +10,7 @@ import {
   } from '@heroicons/react/24/outline'
 
 
-
+// below code is for the progress bar
 const ProgressBar = (props: any) => {
   return (
     <div className='flex justify-between w-2/3 text-primary'>
