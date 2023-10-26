@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
-import Table from '../components/table';
-import {DataRow, TableProps} from '../types';
+import Table from '../../components/table';
+import {DataRow, TableProps} from '../../types';
 
 export default function Output() {
 

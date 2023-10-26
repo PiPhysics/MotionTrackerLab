@@ -6,11 +6,11 @@ import {
 } from "react-router-dom";
 
 import Root from "./routes/root";
-import Output from "./routes/output"
+import Output from "./routes/output/output"
 import Experiment1 from "./routes/experiment/experiment1";
 import Experiment2 from "./routes/experiment/experiment2";
-import Debug from "./routes/debug";
-import ErrorPage from "./routes/error-page";
+import Debug from "./routes/setting/debug";
+import ErrorPage from "./routes/setting/error-page";
 import Calibration1 from './routes/calibration/calibration1';
 import Calibration2 from './routes/calibration/calibration2';
 import Calibration3 from './routes/calibration/calibration3';
@@ -23,12 +23,12 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      // {
+      //   path: "/", // Default route
+      //   element: <StartPage />,
+      // },
       {
-        path: "/", // Default route
-        element: <StartPage />,
-      },
-      {
-        path: "/calibration1", 
+        path: "/" || "/calibration1", 
         element: <Calibration1 />,
       },
       {

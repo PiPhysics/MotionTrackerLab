@@ -31,9 +31,9 @@ export default function Root() {
         */}
 
             {screenSize < 768 && (
-              <div className=' bg-primary w-full h-screen gap-3 flex flex-col justify-center items-center'>
-                <div className='text-4xl font-semibold font-logofont mt-10 text-white'>Motion Tracker</div>
-                <h1 className='text-2xl px-4'>Sorry, this website is only accessible on a tablet or larger screen.</h1>
+              <div className='flex flex-col items-center justify-center w-full h-screen gap-3  bg-primary'>
+                <div className='mt-10 text-4xl font-semibold text-white font-logofont'>Motion Tracker</div>
+                <h1 className='px-4 text-2xl'>Sorry, this website is only accessible on a tablet or larger screen.</h1>
               </div>
             )}
         
@@ -48,8 +48,6 @@ export default function Root() {
           <main className='basis-[75%] flex items-center justify-center min-h-full bg-white'> 
             <Outlet />
           </main>
-
-          
 
         </div>}
       </>
