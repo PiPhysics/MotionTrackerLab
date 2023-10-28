@@ -7,7 +7,7 @@ Folder structure:
 │   ├── backend
 │   └── frontend/
 │       ├── components/
-│       │   └── * all the funtion components goes here *
+│       │   └── * all the funtional components goes here *
 │       ├── routes/
 │       │   ├── calibration/
 │       │   │   └── * the calibration pages (different stages of tracking process) goes here 

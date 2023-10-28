@@ -27,6 +27,9 @@ export default function Calibration3() {
     const updatedTrackerPoint = Object.fromEntries(
       Object.entries(TrackerPoint).map(([key, value]) => [key, { x: value.x, y: value.y }])
     );
+
+    // const updatedTrackerPoint =
+
     await receive_object_points(updatedTrackerPoint);
     console.log(updatedTrackerPoint);
   };

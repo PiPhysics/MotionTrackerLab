@@ -1,11 +1,11 @@
 import React from 'react'
 import { useCoordinateStore, useImageClick } from '../store';
 
-const setClicked = useImageClick((state) => state.setClicked);
 
 
 // below is the code for capturing the coordinates of the image as user clicks on it. 
 export function imageOnClick(e: any) { 
+
   var ratioX = e.target.naturalWidth / e.target.offsetWidth;
   var ratioY = e.target.naturalHeight / e.target.offsetHeight;
   var domX = e.pageX + window.scrollX - e.target.offsetLeft;
@@ -13,11 +13,15 @@ export function imageOnClick(e: any) {
   var imgX = Math.floor(domX * ratioX);
   var imgY = Math.floor(domY * ratioY);
 
-  // useCoordinateStore.setState({ setCoordinates: [imgX, imgY] });
+  // useCoordinateStore.getState()({ X: imgX, Y: imgY });
+  useImageClick.getState().setClicked(false);
   useCoordinateStore.getState().setCoordinates(imgX, imgY); 
 
-  setClicked(true);
-  console.log(imgX, imgY);
+  // const coordinateSetterFunction = useCoordinateStore((state) => state.setCoordinates)
+  // const imageCLickSetterFunction = useImageClick((state) => state.setClicked)
+
+  // console.log(imgX, imgY);
+
 };
 
 // below is the code for displaying the video feed from the camera

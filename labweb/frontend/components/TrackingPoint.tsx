@@ -1,38 +1,45 @@
-// import eventBus from "../eventBus"
-import React, { useState, useRef } from 'react';
+
+import React, { useState, useEffect } from 'react';
+import { useCoordinateStore, useImageClick } from '../store';
 
 // needs changes
 const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
 
+    const clicked = useImageClick((state) => state.clicked);
+    
     const [selectedButton, setSelectedButton] = useState<string | null>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+
 
     const handleButtonClick = (buttonKey: string) => {
+      useImageClick.getState().setClicked(true);
       setSelectedButton(buttonKey);
     };
 
-    const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
-      if (selectedButton !== null && canvasRef.current !== null) {
-        const canvasRect = canvasRef.current.getBoundingClientRect()
-        const x = (event.clientX - canvasRect.left).toFixed(0);
-        const y = (event.clientY - canvasRect.top).toFixed(0);
-       
+    const { X, Y } = useCoordinateStore(state => ({
+      X: state.X,
+      Y: state.Y,
+    }));
 
-        const secondChild = document.querySelector(`#${selectedButton} :nth-child(2)`);
-        const thirdChild = document.querySelector(`#${selectedButton} :nth-child(3)`);
+   
+  // useEffect to run the function when the clicked state changes
+  useEffect(() => {
+    if (!clicked) {
 
-        secondChild.innerHTML = (`${x}`);
-        thirdChild.innerHTML = (`${y}`);
-
+      // Check if a button is selected
+      if (selectedButton !== null) {
+        
+        // Update the markers state with the new coordinates
         const newMarkers = { ...TrackerPoint };
-        newMarkers[selectedButton].x = Number(x);
-        newMarkers[selectedButton].y = Number(y);
+        newMarkers[selectedButton].x = Number(X);
+        newMarkers[selectedButton].y = Number(Y);
         setTrackerPoint(newMarkers);
 
+        // Clear the selected button
         setSelectedButton(null);
-
       }
-    };
+      
+    }
+  }, [clicked]);
 
     const getButtonClass = (buttonId: string): string => {
       if (selectedButton === buttonId || TrackerPoint[buttonId].x !== 0) {
@@ -46,7 +53,6 @@ const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
       
   return (
         <div className="w-2/3 p-4 flex space-y-2 flex-col drop-shadow-md justify-center items-center bg-[#DFE7EE] rounded-md">
-          <canvas className="bg-white w-[200px]" ref={canvasRef} onClick={handleCanvasClick} />
           <h1 className='text-xl font-medium font-primaryfont'> Select the Target</h1>
           <p className='text-sm font-primaryfont font-regular'> Click the buttons below and select the corresponding marker on the camera view one at a time</p>
 

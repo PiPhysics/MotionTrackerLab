@@ -13,22 +13,23 @@ const CalibrationMarkers = ({Markers, setMarkers}: any) => {
 
   // function to track the button clicked
   const handleButtonClick = (buttonKey: string) => {
+    useImageClick.getState().setClicked(true);
     setSelectedButton(buttonKey);
   };
 
+  // Get the coordinates of the recently clicked coordinates from the store.ts 
+  const { X, Y } = useCoordinateStore(state => ({
+    X: state.X,
+    Y: state.Y,
+  }));
+  
   // useEffect to run the function when the clicked state changes
   useEffect(() => {
-    if (clicked) {
+    if (!clicked) {
 
       // Check if a button is selected
       if (selectedButton !== null) {
-
-        // Get the coordinates of the recently clicked coordinates from the store.ts 
-        const { X, Y } = useCoordinateStore(state => ({
-          X: state.X,
-          Y: state.Y,
-        }));
-
+        
         // Update the markers state with the new coordinates
         const newMarkers = { ...Markers };
         newMarkers[selectedButton].x = Number(X);
@@ -38,7 +39,7 @@ const CalibrationMarkers = ({Markers, setMarkers}: any) => {
         // Clear the selected button
         setSelectedButton(null);
       }
-      console.log('Function running from ComponentTwo');
+      
     }
   }, [clicked]);
 
