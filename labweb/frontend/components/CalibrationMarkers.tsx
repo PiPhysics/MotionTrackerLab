@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-// import { CalibrationCoordinatesPixels } from '../../types';
 import { useCoordinateStore, useImageClick } from '../store';
 
 
@@ -14,6 +13,7 @@ const CalibrationMarkers = ({Markers, setMarkers}: any) => {
   // function to track the button clicked
   const handleButtonClick = (buttonKey: string) => {
     useImageClick.getState().setClicked(true);
+    console.log("button is clicked. true now!");
     setSelectedButton(buttonKey);
   };
 

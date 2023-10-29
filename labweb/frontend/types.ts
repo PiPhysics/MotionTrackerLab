@@ -26,9 +26,11 @@ export interface CalibrationCoordinatesPixels {
     br: NamedPoint;
 }
 
-export interface TargetCoordinatesPixels {
-    coordinates: NamedPoint;
-}
+// export interface TargetCoordinatesPixels {
+//     x: number;
+//     y: number;
+//     title: string;
+// }
 
  export interface DataRow {
     x: number;

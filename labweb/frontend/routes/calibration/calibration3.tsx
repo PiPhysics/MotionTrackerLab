@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { receive_object_points } from '../../api';
+import { NamedPoint } from '../../types';
 
-import { TargetCoordinatesPixels } from '../../types';
-import CalibrationMarkers from '../../components/CalibrationMarkers';
 import {Video} from '../../components/Video'; 
 import {
     ArrowLeftCircleIcon,
@@ -13,26 +12,30 @@ import {
   import {
     MinusCircleIcon,
   } from '@heroicons/react/24/outline'
-import TrackingPoint from '../../components/TrackingPoint';
+import {TrackingPoint} from '../../components/TrackingPoint';
 
 // third step of calibration: here, user clicks on the object to be tracked and send the coordinates to backend 
 export default function Calibration3() {
 
-  const [TrackerPoint, setTrackerPoint] = useState<TargetCoordinatesPixels>({
-    coordinates: { x: 0, y: 0, title: "Track Object" }
-  });
+  const [TrackerPoint, setTrackerPoint] = useState<NamedPoint>({
+     x: 0, y: 0, title: "Track Object" 
+    }
+  );
 
   // below code is for sending the coordinates to backend after cleaning up the data as it is not in the correct format (refer to types.ts for the correct format, removed the title field)
   const sendPoints = async () => {
-    const updatedTrackerPoint = Object.fromEntries(
-      Object.entries(TrackerPoint).map(([key, value]) => [key, { x: value.x, y: value.y }])
-    );
+    
+    const { title, ...updatedTrackerPoint } = TrackerPoint;
 
-    // const updatedTrackerPoint =
+    // const updatedTrackerPoint = {
+    //   "x": 331,
+    //   "y": 273
+    // }
 
     await receive_object_points(updatedTrackerPoint);
     console.log(updatedTrackerPoint);
   };
+  
 
 
 
@@ -59,8 +62,8 @@ export default function Calibration3() {
  
         {/* button to go to next stage of calibration: saving the experiment name */}
         <NavLink to="/experiment1" >
-            <div className='flex cursor-pointer items-center justify-center bg-primary hover:bg-secondary w-[300px] rounded-md text-white mx-auto'>
-                <button onClick={sendPoints} className="p-2 text-xl font-regular font-primaryfont">Track Object</button>
+            <div onClick={sendPoints} className='flex cursor-pointer items-center justify-center bg-primary hover:bg-secondary w-[300px] rounded-md text-white mx-auto'>
+                <button  className="p-2 text-xl font-regular font-primaryfont">Track Object</button>
             </div>
         </NavLink>
 

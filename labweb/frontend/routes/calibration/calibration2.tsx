@@ -44,8 +44,8 @@ export default function Calibration2() {
 
         {/* button to go to next stage of calibration */}
         <NavLink to="/calibration3" >
-            <div className='flex cursor-pointer items-center justify-center bg-primary hover:bg-secondary w-[300px] rounded-md text-white mx-auto'>
-                <button onClick={sendPoints} className="p-2 text-xl font-regular font-primaryfont">Calibrate Markers</button>
+            <div onClick={sendPoints} className='flex cursor-pointer items-center justify-center bg-primary hover:bg-secondary w-[300px] rounded-md text-white mx-auto'>
+                <button  className="p-2 text-xl font-regular font-primaryfont">Calibrate Markers</button>
             </div>
         </NavLink>
 

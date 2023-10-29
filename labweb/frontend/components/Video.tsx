@@ -13,14 +13,10 @@ export function imageOnClick(e: any) {
   var imgX = Math.floor(domX * ratioX);
   var imgY = Math.floor(domY * ratioY);
 
-  // useCoordinateStore.getState()({ X: imgX, Y: imgY });
   useImageClick.getState().setClicked(false);
   useCoordinateStore.getState().setCoordinates(imgX, imgY); 
 
-  // const coordinateSetterFunction = useCoordinateStore((state) => state.setCoordinates)
-  // const imageCLickSetterFunction = useImageClick((state) => state.setClicked)
-
-  // console.log(imgX, imgY);
+  // console.log("image is clicked. false now!");
 
 };
 
