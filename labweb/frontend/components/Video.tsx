@@ -2,7 +2,6 @@ import React from 'react'
 import { useCoordinateStore, useImageClick } from '../store';
 
 
-
 // below is the code for capturing the coordinates of the image as user clicks on it. 
 export function imageOnClick(e: any) { 
 

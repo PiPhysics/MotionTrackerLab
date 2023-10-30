@@ -7,7 +7,6 @@ export const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
 
     const clicked = useImageClick((state) => state.clicked);
     
-    // const [selectedButton, setSelectedButton] = useState<string | null>(null);
 
     // let buttonStyle = "border-red-600 bg-red-100";
 
@@ -28,10 +27,7 @@ export const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
       TrackerPoint.y = Y;
       
       // buttonStyle = "border-green-600 bg-green-100 text-green-600 drop-shadow-lg";
-        // Update the markers state with the new coordinates
-        // const newMarkers = { ...TrackerPoint };
-        // newMarkers[selectedButton].x = Number(X);
-        // newMarkers[selectedButton].y = Number(Y);
+
 
         setTrackerPoint(TrackerPoint);
 
@@ -43,7 +39,7 @@ export const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
   }, [clicked]);
 
     const getButtonClass = (): string => {
-      if(clicked || TrackerPoint.value !== 0){
+      if(clicked || (TrackerPoint.x !== 0 && TrackerPoint.y !== 0) ){
         return 'border-green-600 bg-green-100 text-green-600 drop-shadow-lg';
       }else{
         return 'border-red-600 bg-red-100';

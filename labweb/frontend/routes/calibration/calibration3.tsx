@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { receive_object_points } from '../../api';
+import { receive_object_points, calibration_reset } from '../../api';
 import { NamedPoint } from '../../types';
 
 import {Video} from '../../components/Video'; 
@@ -44,9 +44,9 @@ export default function Calibration3() {
 
         {/* progress bar that tells stages of calibration process */}
         <div className='flex justify-between w-2/3 text-primary'>
-          <NavLink to="/calibration2"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
+          <NavLink to="/calibration2"> <ArrowLeftCircleIcon onClick={calibration_reset} className='w-[50px] h-[50px]'/> </NavLink>
           <div className='flex items-center justify-center space-x-2 '>
-            <CheckCircleIcon className=' w-[28px] h-[28px]' />
+            <CheckCircleIcon className=' w-[28px] h-[28px]'/>
             <MinusCircleIcon className='w-[28px] h-[28px]'/>
             <MinusCircleIcon className='w-[28px] h-[28px]'/>
           </div>
