@@ -14,7 +14,8 @@ export function imageOnClick(e: any) {
 
   useImageClick.getState().setClicked(false);
   useCoordinateStore.getState().setCoordinates(imgX, imgY); 
-
+  
+  console.log(imgX, imgY);
   // console.log("image is clicked. false now!");
 
 };

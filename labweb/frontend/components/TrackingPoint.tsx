@@ -7,7 +7,6 @@ export const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
 
     const clicked = useImageClick((state) => state.clicked);
     
-
     // let buttonStyle = "border-red-600 bg-red-100";
 
     const handleButtonClick = () => {
