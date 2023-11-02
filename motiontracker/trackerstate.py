@@ -78,6 +78,7 @@ class MotionTrackerController(StateMachine):
                 **camera_config,
                 callback_thread_closed=self.callback_camera_thread_closed,
             )
+            self.camera._cycle_state()
         else:
             self.camera = CameraCV(
                 **camera_config,
