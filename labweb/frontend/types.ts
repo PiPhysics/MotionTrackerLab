@@ -26,18 +26,14 @@ export interface CalibrationCoordinatesPixels {
     br: NamedPoint;
 }
 
-// export interface TargetCoordinatesPixels {
-//     x: number;
-//     y: number;
-//     title: string;
-// }
-
- export interface DataRow {
-    x: number;
-    y: number;
+export type Object = {
+    pixel_position_x: number;
+    pixel_position_y: number;
+    local_position_x: number;
+    local_position_y: number;
     timestamp: number;
-  }
-  
-  export interface TableProps {
-    data: DataRow[];
-  }
+  };
+
+
+
+ 
