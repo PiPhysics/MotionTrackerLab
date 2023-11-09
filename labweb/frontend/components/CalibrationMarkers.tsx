@@ -13,7 +13,6 @@ const CalibrationMarkers = ({Markers, setMarkers}: any) => {
   // function to track the button clicked
   const handleButtonClick = (buttonKey: string) => {
     useImageClick.getState().setClicked(true);
-    console.log("button is clicked. true now!");
     setSelectedButton(buttonKey);
   };
 
@@ -25,6 +24,7 @@ const CalibrationMarkers = ({Markers, setMarkers}: any) => {
   
   // useEffect to run the function when the clicked state changes
   useEffect(() => {
+    console.log(`image click boolean: ${clicked}`);
     if (!clicked) {
 
       // Check if a button is selected

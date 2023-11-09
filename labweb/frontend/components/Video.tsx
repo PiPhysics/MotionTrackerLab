@@ -12,8 +12,8 @@ export function imageOnClick(e: any) {
   var imgX = Math.floor(domX * ratioX);
   var imgY = Math.floor(domY * ratioY);
 
-  useImageClick.getState().setClicked(false);
   useCoordinateStore.getState().setCoordinates(imgX, imgY); 
+  useImageClick.getState().setClicked(false);
   
   console.log(imgX, imgY);
   // console.log("image is clicked. false now!");

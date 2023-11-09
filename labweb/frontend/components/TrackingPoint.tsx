@@ -5,10 +5,6 @@ import { useCoordinateStore, useImageClick } from '../store';
 // needs changes
 export const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
 
-    const clicked = useImageClick((state) => state.clicked);
-    
-    // let buttonStyle = "border-red-600 bg-red-100";
-
     const handleButtonClick = () => {
       useImageClick.getState().setClicked(true);
     };
@@ -17,21 +13,21 @@ export const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
       X: state.X,
       Y: state.Y,
     }));
-
+    
+    const clicked = useImageClick((state) => state.clicked);
   // useEffect to run the function when the clicked state changes
   useEffect(() => {
-    if (clicked) {
+    console.log(`image click boolean: ${clicked}`);
+
+    if (!clicked) {
 
       TrackerPoint.x = X;
       TrackerPoint.y = Y;
-      
-      // buttonStyle = "border-green-600 bg-green-100 text-green-600 drop-shadow-lg";
+  
 
+      console.log(`stored coordinates: ${X}, ${Y}`);
 
-        setTrackerPoint(TrackerPoint);
-
-        // Clear the selected button
-        // setSelectedButton(null);
+      setTrackerPoint(TrackerPoint);
       }
       
     
@@ -54,8 +50,8 @@ export const TrackingPoint = ({TrackerPoint, setTrackerPoint}) => {
           <div className='grid gap-x-6 gap-y-3'>
                   <div onClick={() => handleButtonClick()} className={`flex group box-border cursor-pointer w-52 rounded-md text-center justify-center items-center border-2  hover:border-green-600 hover:bg-green-100 ${getButtonClass()}`}> 
                     <div className=' group-hover:text-green-600 p-1 basis-[66%]'>{TrackerPoint.title}</div>
-                    <div className='text-gray-800 basis-[19%] p-1  bg-white border-l-2 border-gray-600 group-hover:border-green-600'>{TrackerPoint.x}</div>
-                    <div className='text-gray-800 basis-[19%] p-1 rounded-r-lg bg-white border-l-2 border-gray-600 group-hover:border-green-600'>{TrackerPoint.y}</div>
+                    <div className='text-gray-800 basis-[19%] p-1  bg-white border-l-2 border-gray-600 group-hover:border-green-600'>{X}</div>
+                    <div className='text-gray-800 basis-[19%] p-1 rounded-r-lg bg-white border-l-2 border-gray-600 group-hover:border-green-600'>{Y}</div>
                   </div> 
           </div>
         </div>

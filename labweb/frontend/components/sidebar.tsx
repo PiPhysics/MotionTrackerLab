@@ -42,7 +42,7 @@ function Sidebar(){
 
         <div className='flex items-center justify-center w-3/5 mx-auto mb-10 text-white rounded-md cursor-pointer bg-secondary'>
             <ArrowPathIcon className='w-[25px] h-[35px]'/>
-            <div onclick={soft_reset} className="flex p-2 text-sm font-regular laptop:text-xl font-primaryfont">Soft Reset</div>
+            <div onClick={soft_reset} className="flex p-2 text-sm font-regular laptop:text-xl font-primaryfont">Soft Reset</div>
         </div>
         
     </div>

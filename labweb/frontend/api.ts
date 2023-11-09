@@ -1,17 +1,17 @@
 import { Point, Points } from "./types";
+
 const API_BASE_URL = "/api";
 
 const API_START_CALIBRATION_URL = API_BASE_URL + "/command/start_calibration";
 const API_RECIEVE_CALIBRATION_POINTS_URL = API_BASE_URL + "/command/receive_calibration_points";
 const API_RECIEVE_OBJECT_POINTS_URL = API_BASE_URL + "/command/receive_object_points";
-const API_OPEN_EXPERIMENT_URL = API_BASE_URL + "/command/open_experiment";
 const API_START_RECORDING_URL = API_BASE_URL + "/command/start_recording";
 const API_STOP_RECORDING_URL = API_BASE_URL + "/command/stop_recording";
+const API_CLOSE_EXPERIMENT_URL = API_BASE_URL + '/command/close_experiment';
 const API_SOFT_RESET_URL = API_BASE_URL + "/command/soft_reset";
-const API_TRACKING_RESET_URL = API_BASE_URL + "/command/tracking_reset";
-const API_CALIBRATION_RESET_URL = API_BASE_URL + "/command/calibration_reset";
+const API_TRACKING_RESET_URL = API_BASE_URL + "/command/reset_tracking";
+const API_CALIBRATION_RESET_URL = API_BASE_URL + "/command/reset_calibration";
 
-// const API_SOFT_RESET_URL = API_BASE_URL + "command/soft_reset";
 
 export async function start_calibration() {
   const response = await fetch(API_START_CALIBRATION_URL, { method: "POST" });
@@ -36,36 +36,84 @@ export async function receive_object_points(data: Point) {
   console.log(response);
 }
 
-export async function open_experiment(data: string) {
+export async function open_experiment(experimentName: string) {
+  const API_OPEN_EXPERIMENT_URL = API_BASE_URL + `/command/open_experiment?experiment_name=${experimentName}`;
+
   const response = await fetch(API_OPEN_EXPERIMENT_URL, {
-    method: "POST",
-    body: data,
-    headers: {"Content-Type": "application/json"}
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({}),
   });
   console.log(response);
 }
 
+
+
 export async function start_recording() {
-  const response = await fetch(API_START_RECORDING_URL, { method: "POST" });
+  const response = await fetch(API_START_RECORDING_URL, {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
   console.log(response);
 }
 
 export async function stop_recording() {
-  const response = await fetch(API_STOP_RECORDING_URL, { method: "POST" });
+  const response = await fetch(API_STOP_RECORDING_URL, {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
   console.log(response);
 }
 
+export async function close_experiment() {
+  const response = await fetch(API_CLOSE_EXPERIMENT_URL, {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
+  console.log(response);
+}
+
+
 export async function soft_reset() {
-  const response = await fetch(API_SOFT_RESET_URL, { method: "POST" });
+  const response = await fetch(API_SOFT_RESET_URL, {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
   console.log(response);
 }
 
 export async function tracking_reset() {
-  const response = await fetch(API_TRACKING_RESET_URL, { method: "POST" });
+  const response = await fetch(API_TRACKING_RESET_URL, {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
   console.log(response);
 }
 
 export async function calibration_reset() {
-  const response = await fetch(API_CALIBRATION_RESET_URL, { method: "POST" });
+  const response = await fetch(API_CALIBRATION_RESET_URL, {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
   console.log(response);
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import {useState} from 'react';
 import { NavLink } from 'react-router-dom';
-import { receive_object_points } from '../../api';
+
 import {Video} from '../../components/Video'; 
-import { start_recording, stop_recording } from '../../api';
+import { start_recording, stop_recording, close_experiment } from '../../api';
 
 import {
     ArrowLeftCircleIcon,
@@ -39,7 +39,7 @@ export default function Experiment2() {
         
         {/* progress bar that tells stages of experiment process */}
         <div className='flex justify-between w-2/3 text-primary'>
-          <NavLink to="/experiment1"> <ArrowLeftCircleIcon className='w-[50px] h-[50px]'/> </NavLink>
+          <NavLink to="/experiment1"> <ArrowLeftCircleIcon onClick={close_experiment} className='w-[50px] h-[50px]'/> </NavLink>
           <div className='flex items-center justify-center space-x-2 '>
             <CheckCircleIcon className=' w-[28px] h-[28px]' />
             <CheckCircleIcon className='w-[28px] h-[28px]'/>

@@ -3,7 +3,18 @@ import { NavLink } from 'react-router-dom';
 import {Video} from '../../components/Video';
 import CalibrationMarkers from '../../components/CalibrationMarkers';
 import { CalibrationCoordinatesPixels } from '../../types';
-import  ProgressBar from '../../components/ProgressBar';
+// import  ProgressBar from '../../components/ProgressBar';
+
+import {
+    ArrowLeftCircleIcon,
+    CheckCircleIcon
+  } from '@heroicons/react/24/solid'
+  
+  import {
+    MinusCircleIcon,
+  } from '@heroicons/react/24/outline'
+
+  import { soft_reset } from '../../api';
 
 
 import {receive_calibration_points} from '../../api';
@@ -33,7 +44,16 @@ export default function Calibration2() {
       <div className="flex flex-col items-center justify-center w-full py-4 space-y-4">
 
         {/* progress bar that tells stages of calibration process*/}
-        <ProgressBar props="/calibration1" />
+        <div className='flex justify-between w-2/3 text-primary'>
+      <NavLink to="/calibration1">
+        <ArrowLeftCircleIcon onClick={soft_reset} className='w-[50px] h-[50px]' />
+      </NavLink>
+      <div className='flex items-center justify-center space-x-2'>
+        <MinusCircleIcon className=' w-[28px] h-[28px]' />
+        <MinusCircleIcon className='w-[28px] h-[28px]' />
+        <MinusCircleIcon className='w-[28px] h-[28px]' />
+      </div>
+    </div>
         
         {/* below is the video feed */}
         <div className='w-2/3 h-[450px]'> 
