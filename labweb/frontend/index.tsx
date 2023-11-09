@@ -14,7 +14,7 @@ import ErrorPage from "./routes/setting/error-page";
 import Calibration1 from './routes/calibration/calibration1';
 import Calibration2 from './routes/calibration/calibration2';
 import Calibration3 from './routes/calibration/calibration3';
-import StartPage from './routes/startpage';
+// import StartPage from './routes/startpage';
 
 // Creating the router for our SPA
 const router = createBrowserRouter([
@@ -23,12 +23,12 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      // {
-      //   path: "/", // Default route
-      //   element: <StartPage />,
-      // },
       {
-        path: "/" || "/calibration1", 
+        path: "/", // Default route
+        element: <Calibration1 />,
+      },
+      {
+        path: "/calibration1", 
         element: <Calibration1 />,
       },
       {

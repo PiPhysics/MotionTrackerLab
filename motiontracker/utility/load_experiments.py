@@ -19,3 +19,9 @@ def load_experiment(name: str) -> Dict[str, List]:
         results[fpath.stem] = data
     return results
 
+
+def list_experiments():
+    save_dir = Path(CONFIG['motion_tracker']['recording']['save_directory'])
+    all_dir = [item.name for item in save_dir.iterdir() if item.is_dir()]
+    return dict(experiments = all_dir)
+

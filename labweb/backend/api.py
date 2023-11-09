@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 
 from .log import log
 from labconfig.types import CalibrationCoordinatesPixels, SimpleServerCommand, PointInt
-from motiontracker.utility.load_experiments import load_experiment
+from motiontracker.utility.load_experiments import load_experiment, list_experiments
 from labconfig import CONFIG
 from motiontracker.trackerstate import MotionTrackerController
 
@@ -113,6 +113,24 @@ async def receive_object_points(experiment_name: str):
         error_message = str(e)
         log.exception("Error in start calibration API call")
     return dict(success=success, current_state=mt_controller.current_state.value, error_message=error_message, data=data)
+
+# Prashant's creation
+@api_app.post("/command/list_experiments")
+async def receive_object_points():
+    success = True
+    error_message = ""
+    data = []
+    try:
+        data = list_experiments()
+    except Exception as e:
+        success = False
+        error_message = str(e)
+        log.exception("Error in start calibration API call")
+    return dict(success=success, current_state=mt_controller.current_state.value, error_message=error_message, data=data)
+
+
+
+
 
 @api_app.post("/command/open_experiment")
 async def open_experiment(experiment_name: str):
