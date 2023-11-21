@@ -7,12 +7,13 @@ import numpy as np
 from statemachine import StateMachine, State
 from statemachine.contrib.diagram import DotGraphMachine
 from labconfig import CONFIG
-from labconfig.types import Config, CalibrationCoordinatesPixels, ObjectState, PointInt, flatten
+from labconfig.types import Config, CalibrationCoordinatesPixels, ObjectState, PointInt, flatten, WebSocketMessage
 from .log import log
 from .camera.camera_opencv import Camera as CameraCV
 from .camera.camera_video import Camera as CameraVideo
 from .calibration import find_transition_matrix
 from .tracker import Tracker
+import asyncio
 
 
 class MotionTrackerController(StateMachine):
@@ -66,12 +67,14 @@ class MotionTrackerController(StateMachine):
     dlt: np.ndarray = None
     experiment_name:str = CONFIG["motion_tracker"]["recording"]["default_experiment_name"]
     trial_num:int = 0
+    ws_manager = None
     ##                                                ##
     ####################################################
 
-    def __init__(self, config: Config):
+    def __init__(self, config: Config, ws_manager=None):
         StateMachine.__init__(self)
         self.config = config
+        self.ws_manager = ws_manager
         camera_config = config["motion_tracker"]["camera"]
         if "video_fpath" in camera_config:
             self.camera = CameraVideo(
@@ -124,6 +127,10 @@ class MotionTrackerController(StateMachine):
 
     def on_enter_state(self, event, state):
         log.info(f"Entering '{state.id}' state from '{event}' event.")
+        if self.ws_manager:
+            message = WebSocketMessage(error=False, message='', state=self.current_state.id, data=dict())
+            loop = asyncio.get_event_loop()
+            asyncio.run_coroutine_threadsafe(self.ws_manager.broadcast(message), loop)
 
     def after_transition(self, event, state):
         log.debug(f"After '{event}', on the '{state.id}' state.")
