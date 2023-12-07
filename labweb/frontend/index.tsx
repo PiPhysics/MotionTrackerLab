@@ -70,3 +70,9 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+// Add websocket for testing
+const ws = new WebSocket(`ws://localhost:8000/api/ws`);
+ws.onmessage = function(event) {
+  console.log(event.data)
+};

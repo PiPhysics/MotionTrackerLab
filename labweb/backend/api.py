@@ -1,17 +1,18 @@
 import time
 import io
 from PIL import Image
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocketDisconnect, WebSocket
 from fastapi.responses import StreamingResponse
 
 from .log import log
-from labconfig.types import CalibrationCoordinatesPixels, SimpleServerCommand, PointInt
+from labconfig.types import CalibrationCoordinatesPixels, SimpleServerCommand, PointInt, WebSocketMessage
 from motiontracker.utility.load_experiments import load_experiment, list_experiments
 from labconfig import CONFIG
 from motiontracker.trackerstate import MotionTrackerController
+from .sockets import manager
 
 
-mt_controller = MotionTrackerController(CONFIG)
+mt_controller = MotionTrackerController(CONFIG, ws_manager=manager)
 api_app = FastAPI(title="API App")
 
 
@@ -72,6 +73,26 @@ def get_stream(freq: int = 30) -> StreamingResponse:
 
 
 ##                           End Video Streaming                              ##
+################################################################################
+
+################################################################################
+##                        Start Web Socket                                    ##
+
+
+@api_app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await manager.connect(websocket)
+    # This is here just to test its working
+    await manager.broadcast(WebSocketMessage(error=False, message="", data=dict(), state='test'))
+    try:
+        while True:
+            data = await websocket.receive_text()
+            log.info("Web Socket Data Received: %s", data)
+            
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
+
+##                           End Web Socket                                   ##
 ################################################################################
 
 

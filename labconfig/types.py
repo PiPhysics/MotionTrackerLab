@@ -8,6 +8,11 @@ import numpy as np
 ########################################################
 ###           Start Backend Server Typing            ###
 
+class WebSocketMessage(TypedDict):
+    error: bool # if true, then message will be filled
+    message: str # empty string if no error
+    data: Dict # may be filled in future
+    state: str # always filled, the current state of the system
 
 class PointFloat(BaseModel):
     x: float = 0
