@@ -15,7 +15,7 @@ export const Sidebardata = [
     {
         title: "Experiment",
         icon: <ClipboardDocumentListIcon className='flex-[30%] grid place-items-center w-[25px] h-[35px]'/>,
-        link: "/experiment2",
+        link: "/experiment1",
     },
     {
         title: "Output",

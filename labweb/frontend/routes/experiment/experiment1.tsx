@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {Video} from '../../components/Video'; 
@@ -17,10 +18,13 @@ import {open_experiment, tracking_reset} from "../../api"
 // first step of experiment: here, user names the experiment
 export default function Experiment1() {
 
+  
+  const [experimentName, setExperimentName] = useState('');
+
+  const isExperimentNameValid = experimentName.trim() !== '';
+
   // below code is for sending the experiment name to backend
   const sendName = async () => {
-    const inputElement = document.getElementById("experiment");
-    const experimentName = inputElement.value;
     await open_experiment(experimentName);
   }
 
@@ -47,15 +51,15 @@ export default function Experiment1() {
         <div className="w-2/3 flex space-y-4 flex-col drop-shadow-md justify-center items-center h-[200px] bg-[#DFE7EE] rounded-md">
           <h1 className='text-xl font-medium font-primaryfont laptop:text-2xl'> Name the experiment</h1>
           <p className='text-sm text-center font-primaryfont font-regular laptop:text-base'>For each time you want to track a motion of an object, you will be required to name the experiment</p>
-          <input className="shadow text-center appearance-none border rounded w-2/3 laptop:w-[40%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autoComplete='off' id="experiment" type="text" placeholder="Experiment Name" required></input>
+          <input className="shadow text-center appearance-none border rounded w-2/3 laptop:w-[40%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autoComplete='off' id="experiment" type="text" placeholder="Experiment Name" onChange={(e) => setExperimentName(e.target.value)} required></input>
         </div>
 
         {/* button to go to next stage of experiment: recording the experiment name */}
-        <NavLink to="/experiment2" >
+       {isExperimentNameValid && <NavLink to="/experiment2" >
             <div onClick={sendName} className='flex cursor-pointer items-center justify-center bg-primary hover:bg-secondary w-[300px] rounded-md text-white mx-auto'>
-                <button  className="p-2 text-xl font-regular font-primaryfont">Save</button>
+                <button className="p-2 text-xl font-regular font-primaryfont">Save</button>
             </div>
-        </NavLink>
+        </NavLink>}
 
       </div>
     )

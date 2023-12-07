@@ -34,6 +34,14 @@ export default function Experiment2() {
     }
   };
 
+  // const getStyleButtonClass = (buttonId: string): string => {
+  //   if (startClicked === false) {
+  //     return 'w-[200px]';
+  //   } else {
+  //     return 'w-[100px]';
+  //   }
+  // };
+
     return (
         <div className="flex flex-col items-center justify-center w-full space-y-4">
         
@@ -54,13 +62,13 @@ export default function Experiment2() {
         </div>
 
         {/* below is the button to start and stop recording */}
-        <div className="w-2/3  flex p-4 space-y-4 flex-col drop-shadow-md justify-center items-center bg-[#DFE7EE] rounded-md">
+        <div className="w-2/3  flex p-6 space-y-4 flex-col drop-shadow-md justify-center items-center bg-[#DFE7EE] rounded-md">
           <h1 className='text-xl font-medium font-primaryfont laptop:text-2xl'> Record your target's motion! {count} </h1>
           <p className='text-sm font-primaryfont font-regular laptop:text-base'>You are all set to record the motion. Your data will be under ‘Output’ tab</p>
   
           <div className='flex flex-col items-center justify-center gap-4 text-white laptop:flex-row laptop:gap-12'>
-            <button onClick={handleStartClick} className='rounded-full w-[120px]  laptop:w-[200px] py-2 px-6 text-xl laptop:text-2xl bg-green-600 z-20 hover:drop-shadow-xl'> Start</button>
-            <button onClick={handleStopClick} disabled={!startClicked} className='rounded-full w-[120px] laptop:w-[200px] py-2 px-6 text-xl laptop:text-2xl bg-red-600 z-20 hover:drop-shadow-xl'> Stop</button>
+            { !startClicked && <button onClick={handleStartClick} disabled={startClicked} className={`rounded-full w-[120px]  laptop:w-[200px] py-2 px-6 text-xl laptop:text-2xl bg-green-600 z-20 hover:drop-shadow-xl `}> Start</button>}
+            { startClicked && <button onClick={handleStopClick} disabled={!startClicked} className={`rounded-full w-[120px] laptop:w-[200px] py-2 px-6 text-xl laptop:text-2xl bg-red-600 z-20 hover:drop-shadow-xl  `}> Stop</button>}
           </div>
         
         </div>
