@@ -14,13 +14,6 @@ MotionTrackerLab
 └─ assets # pictures for documentation website
 ```
 
-## Notes
-
-I have made up my mind to just cleanly separate frontend from backend.
-
-What if someone navigates away from the camera after 10 seconds! Do I really want to turn off the camera! Or do a soft reset.
-What if they are just looking at graphs!
-
 ## Install
 
 1. `pip install -e .[dev]` - For Development
